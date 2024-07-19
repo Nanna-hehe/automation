@@ -29,12 +29,12 @@
 
 
 
-name: CI (Jira cloud example with GH action, report results to Test Plan - demo)
+name: CI (Jira cloud example with GH action, report results to Test Execution - demo)
 on:
   workflow_dispatch:
     inputs:
       test_plan_key:
-        description: 'Test Plan issue key'
+        description: 'Test Execution issue key'
         required: false
         default: ''
  
@@ -74,4 +74,4 @@ jobs:
         testFormat: "junit"
         testPaths: "**/test-results/*.xml"
         projectKey: "COM"
-        testPlanKey: ${{ github.event.inputs.test_plan_key }}
+        testPlanKey: ${{ github.event.inputs.test_execution_key }}
