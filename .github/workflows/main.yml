@@ -33,7 +33,7 @@ name: CI (Jira cloud example with GH action, report results to Test Execution - 
 on:
   workflow_dispatch:
     inputs:
-      test_plan_key:
+      test_execution_key:
         description: 'Test Execution issue key'
         required: false
         default: ''
@@ -68,10 +68,10 @@ jobs:
      - name: Submit results to Xray
        uses: mikepenz/xray-action@v2.4.5
        with:
-        CLIENT_ID: ${{ secrets.client_id }}
-        CLIENT_SECRET: ${{ secrets.client_secret }}
+        username: ${{ secrets.client_id }}
+        password: ${{ secrets.client_secret }}
         xrayCloud: true
         testFormat: "junit"
         testPaths: "**/test-results/*.xml"
         projectKey: "COM"
-        testPlanKey: ${{ github.event.inputs.test_execution_key }}
+        testExecutionKey: ${{ github.event.inputs.test_execution_key }}
