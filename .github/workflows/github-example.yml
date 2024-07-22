@@ -35,16 +35,16 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
-      - name: Submit results to Xray
-        uses: actions/upload-artifact@v4
+      # - name: Submit results to Xray
+      #   uses: actions/upload-artifact@v4
         # if: ${{ !cancelled() }}
         # with:
         #  CLIENT_ID: ${{ secrets.CLIENT_ID }}
         #  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         #  path: test-results/junit-report.xml
       - run: echo TOKEN=$(curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"73CBB62979E04AE3A5AC5D450CF92A67\",\"clientSecret\":\"2c4e151b193067b4c8a27b6485c4b85c96d0c1e83939fc86971fe5bd1da84b98\"}" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"') >> $GITHUB_ENV
-      # # - run: echo ${{ env.TOKEN }}
-      # # - run: cat test-reports/junit-report.xml
+      - run: echo ${{ env.TOKEN }}
+      - run: cat test-reports/junit-report.xml
       # # - run: curl -X 'GET' 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/milestones?projectId=10003' -H 'accept:application/json' -H 'authorization:JWT ${{ env.TOKEN }}'
       - run: curl -H "Content-Type:text/xml" -H "Authorization:JWT ${{ env.TOKEN }}" --data @test-results/junit-report.xml "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=${{ inputs.PROJECT_KEY }}&testExecutionKey=${{ inputs.TEST_EXECUTION_KEY }}"
 
