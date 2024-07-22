@@ -42,7 +42,7 @@ jobs:
         #  CLIENT_ID: ${{ secrets.CLIENT_ID }}
         #  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         #  path: test-results/junit-report.xml
-      - run: echo TOKEN=$(curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"73CBB62979E04AE3A5AC5D450CF92A67\",\"clientSecret\":\"2c4e151b193067b4c8a27b6485c4b85c96d0c1e83939fc86971fe5bd1da84b98\"}" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"') >> $GITHUB_ENV
+      - run: echo TOKEN=$(curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"5E6A0967D75640C0A233495BDD7B4282\",\"clientSecret\":\"90b4db89a7e7eb1e01177bb4c4ab0cda256dafdb7165172d3ec31788df668c74\"}" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"') >> $GITHUB_ENV
       - run: echo ${{ env.TOKEN }}
       - run: cat test-results/junit-report.xml
       # # - run: curl -X 'GET' 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/milestones?projectId=10003' -H 'accept:application/json' -H 'authorization:JWT ${{ env.TOKEN }}'
