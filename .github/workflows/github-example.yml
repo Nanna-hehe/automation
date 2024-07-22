@@ -39,7 +39,7 @@ jobs:
       - run: echo $CLIENT_SECRET
       - run: echo ${{ inputs.PROJECT_KEY }}
       - run: echo ${{ inputs.TEST_EXECUTION_KEY }}
-      - run: curl -H "Content-Type:application/json" -X POST --data "
+      # - run: curl -H "Content-Type:application/json" -X POST --data "
       # - name: Submit results to Xray
 
       #   uses: actions/upload-artifact@v4
