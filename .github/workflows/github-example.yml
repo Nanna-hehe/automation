@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - develop
   workflow_dispatch:
     inputs:
       PROJECT_KEY:
@@ -23,22 +22,23 @@ env:
 jobs:
   Trigger-Test:
     runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: export NODE_OPTIONS="--max-old-space-size=3072"
-      # - run: yarn install
-      # - run: yarn build
+     
       # - run: sudo apt update && sudo apt install -y gettext
-      - run: echo "success"
-      - run: echo $CLIENT_ID
-      - run: echo $CLIENT_SECRET
-      - run: echo ${{ inputs.PROJECT_KEY }}
-      - run: echo ${{ inputs.TEST_EXECUTION_KEY }}
-      - run: curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=\",\"clientSecret\":\"001bf08a7cab4aaa28b8ad6d9eae4e4aea909b44e4aad1f431d2ec1e19a9b8ca\"}" https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/v1/apikeys/authenticate| tr -d '"'
-      - run: echo TOKEN=$(curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=\",\"clientSecret\":\"001bf08a7cab4aaa28b8ad6d9eae4e4aea909b44e4aad1f431d2ec1e19a9b8ca\"}" https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/v1/apikeys/authenticate| tr -d '"') >> $GITHUB_ENV
-      - run: echo ${{ env.TOKEN }}
-      - run: curl -X 'GET' 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/milestones?projectId=10003' -H 'accept:application/json' -H 'authorization:JWT ${{ env.TOKEN }}'
-      # - run: curl -H "Content-Type:text/xml" -H "Authorization:JWT $token" --data @test-reports/junit-report.xml "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-result/junit?projectKey=${PROJECT_KEY}&testExecutionKey=${TEST_EXECUTION_KEY}"
+      - name: Install dependencies
+        run: npm ci
+      - name:  Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+    
+      - run: echo TOKEN=$(curl -H "Content-Type:application/json" -X POST --data "{\"clientId\":\"73CBB62979E04AE3A5AC5D450CF92A67\",\"clientSecret\":\"2c4e151b193067b4c8a27b6485c4b85c96d0c1e83939fc86971fe5bd1da84b98\"}" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"') >> $GITHUB_ENV
+      # - run: echo ${{ env.TOKEN }}
+      # - run: cat test-reports/junit-report.xml
+      # - run: curl -X 'GET' 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/milestones?projectId=10003' -H 'accept:application/json' -H 'authorization:JWT ${{ env.TOKEN }}'
+      - run: curl -H "Content-Type:text/xml" -H "Authorization:JWT ${{ env.TOKEN }}" --data @test-results/junit-report.xml "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=${{ inputs.PROJECT_KEY }}&testExecutionKey=${{ inputs.TEST_EXECUTION_KEY }}"
