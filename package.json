@@ -1,20 +1,15 @@
 {
-  "name": "githubtest",
+  "name": "hellocucumber",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "npx playwright test",
-  "report": "npx playwright show-report",
-  "debug": "npx playwright test --project=chromium",
-  "debug-console": "npx playwright test --debug --project=chromium",
-  "debug-ts": "npx ts-node"},
+    "test": "cucumber-js features -f json:report/cucumber_report.json"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.44.1",
-    "@types/node": "^20.14.0"
+    "cucumber": "^10.8.0"
   }
 }
-

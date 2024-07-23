@@ -1,0 +1,69 @@
+[
+  {
+    "description": "  Everybody wants to know when it's Friday",
+    "elements": [
+      {
+        "description": "",
+        "id": "is-it-friday-yet?;sunday-isn't-friday",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Sunday isn't Friday",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "today is Sunday",
+            "match": {
+              "location": "features/step_definitions/stepdefs.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 443291
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I ask whether it's Friday yet",
+            "match": {
+              "location": "features/step_definitions/stepdefs.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48957
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should be told \"Nope\"",
+            "match": {
+              "location": "features/step_definitions/stepdefs.js:16"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 789791,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'Yes' !== 'Nope'\n\n    + expected - actual\n\n    -Yes\n    +Nope\n\n    at World.<anonymous> (/Users/thuydung/Desktop/githubtest/automation/automation-test/features/step_definitions/stepdefs.js:17:10)"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@COM_9",
+            "line": 5
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "is-it-friday-yet?",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Is it Friday yet?",
+    "tags": [],
+    "uri": "features/step_definitions/is_it_friday_yet.feature"
+  }
+]

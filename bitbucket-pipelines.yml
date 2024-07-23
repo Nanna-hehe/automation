@@ -1,0 +1,29 @@
+# This is a sample build configuration for Ruby.
+# Check our guides at https://confluence.atlassian.com/x/8r-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: ruby:2.5
+ 
+pipelines:
+  default:
+    - step:
+        caches:
+          - bundler
+        script: # Modify the commands below to build your repository.
+          - |
+              apt-get update -qq
+              apt-get install unzip
+              gem install cucumber
+              gem install rspec-expectations
+              export token=$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"$client_id\",\"client_secret\": \"$client_secret\" }" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"')
+              curl -H "Content-Type: application/json" --output features/features.zip -X GET -H "Authorization: Bearer ${token}"  "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$cucumber_keys"
+              rm -f features/*.feature
+              unzip -o features/features.zip -d features/
+              cucumber -x -f json -o data.json
+              curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${token}" --data @data.json https://xray.cloud.getxray.app/api/v1/import/execution/cucumber
+              echo "done"
+ 
+definitions:
+  caches:
+    bundler: ./vendor
