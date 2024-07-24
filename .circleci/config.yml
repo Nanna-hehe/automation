@@ -1,21 +1,33 @@
-# This config was automatically generated from your source code
-# Stacks detected: cicd:github-actions:.github/workflows,deps:node:.
-version: 2.1
-orbs:
-  node: circleci/node@5
-jobs:
-  playwright-job-name:
-    executors:
-  pw-jammy-development:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-jammy
-    steps:
-      - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test -- --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
-
-workflows:
-  build-and-test:
-    jobs:
-      - test-node
-    # - deploy:
-    #     requires:
-    #       - test-node
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+ 
+    working_directory: ~/demo/java-junit-calc # directory where steps will run
+ 
+    docker: # run the steps with Docker
+      - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
+ 
+    steps: # a collection of executable commands
+ 
+      - checkout: # check out source code to working directory
+          path: ~/demo
+ 
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+          key: circleci-java-junit-calc-demo # circleci-java-junit-calc-demo-{{ checksum "pom.xml" }}
+ 
+      - run: mvn dependency:go-offline # gets the project dependencies
+ 
+      - run: mvn test # run the actual tests
+ 
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.m2
+          key: circleci-java-junit-calc-demo # circleci-java-junit-calc-demo-{{ checksum "pom.xml" }}
+ 
+      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+          path: target/surefire-reports
+ 
+      - run:
+          name: Get API token
+          command: |
+            echo export token=$(cu
