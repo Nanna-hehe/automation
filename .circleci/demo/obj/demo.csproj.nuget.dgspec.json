@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/thuydung/Desktop/mavenfailcase/demo/demo.csproj": {}
+    "/Users/thuydung/Desktop/githubtest/automation/.circleci/demo/demo.csproj": {}
   },
   "projects": {
-    "/Users/thuydung/Desktop/mavenfailcase/demo/demo.csproj": {
+    "/Users/thuydung/Desktop/githubtest/automation/.circleci/demo/demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/thuydung/Desktop/mavenfailcase/demo/demo.csproj",
+        "projectUniqueName": "/Users/thuydung/Desktop/githubtest/automation/.circleci/demo/demo.csproj",
         "projectName": "demo",
-        "projectPath": "/Users/thuydung/Desktop/mavenfailcase/demo/demo.csproj",
+        "projectPath": "/Users/thuydung/Desktop/githubtest/automation/.circleci/demo/demo.csproj",
         "packagesPath": "/Users/thuydung/.nuget/packages/",
-        "outputPath": "/Users/thuydung/Desktop/mavenfailcase/demo/obj/",
+        "outputPath": "/Users/thuydung/Desktop/githubtest/automation/.circleci/demo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/thuydung/.nuget/NuGet/NuGet.Config"
