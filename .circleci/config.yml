@@ -40,7 +40,7 @@ jobs: # a collection of steps
       - run:
           name: Get API token
           command: |
-            export token=$(curl -H "Content-Type: application/json" -X POST --data "{\"CLIENT_ID\": \"$CLIENT_ID\", \"CLIENT_SECRECT\": \"$CLIENT_SECRECT\" }" https://xray.cloud.getxray.app/api/v2/authenticate| tr -d '"')
+            export token=$(curl -H "Content-Type: application/json" -X POST --data "{\"client_id\": \"$CLIENT_ID\", \"client_secret\": \"$CLIENT_SECRECT\" }" https://xray.cloud.getxray.app/api/v2/authenticate| tr -d '"')
             echo $token
 
  
