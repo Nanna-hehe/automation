@@ -2,23 +2,22 @@ version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
  
-    working_directory: ~/demo # directory where steps will run
+    # working_directory: ~/de # directory where steps will run
  
     docker: # run the steps with Docker
-      - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
+      - image: mcr.microsoft.com/playwright:v1.45.1-jammy
  
     steps: # a collection of executable commands
  
-      - checkout: # check out source code to working directory
-          path: ~/demo
+      # - checkout: # check out source code to working directory
+      #     path: ~/tests
  
       # - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
       #     key: circleci-test # circleci-java-junit-calc-demo-{{ checksum "pom.xml" }}
  
       # - run: mvn dependency:go-offline # gets the project dependencies
-      - run: cd /Users/thuydung/Desktop/githubtest/automation/circleci/demo
-      - run: mvn clean packages
-      - run: mvn test # run the actual tests
+      
+      - run: npm test # run the actual tests
  
       # - save_cache: # saves the project dependencies
       #     paths:
@@ -26,7 +25,7 @@ jobs: # a collection of steps
       #     key: circleci-java-junit-calc-demo # circleci-java-junit-calc-demo-{{ checksum "pom.xml" }}
  
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
-          path: target/surefire-reports/junitreports
+          path: "**/test-results/*.xml"
  
       - run:
           name: Get API token
