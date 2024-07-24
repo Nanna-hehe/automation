@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-25T11:54:11 WIB" name="Surefire suite" finished-at="2024-06-25T11:54:11 WIB" duration-ms="83">
+  <suite started-at="2024-07-24T15:05:27 WIB" name="Surefire suite" finished-at="2024-07-24T15:05:27 WIB" duration-ms="98">
     <groups>
     </groups>
-    <test started-at="2024-06-25T11:54:11 WIB" name="Surefire test" finished-at="2024-06-25T11:54:11 WIB" duration-ms="83">
+    <test started-at="2024-07-24T15:05:27 WIB" name="Surefire test" finished-at="2024-07-24T15:05:27 WIB" duration-ms="98">
       <class name="ui.TestEmployeeDetails">
-        <test-method signature="testCalculateAppriasal()[pri:0, instance:ui.TestEmployeeDetails@2e3fc542]" started-at="2024-06-25T11:54:11 WIB" name="testCalculateAppriasal" finished-at="2024-06-25T11:54:11 WIB" duration-ms="9" status="PASS">
+        <test-method signature="testCalculateAppriasal()[pri:0, instance:ui.TestEmployeeDetails@706a04ae]" started-at="2024-07-24T15:05:27 WIB" name="testCalculateAppriasal" finished-at="2024-07-24T15:05:27 WIB" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCalculateAppriasal -->
-        <test-method signature="testCalculateYearlySalary()[pri:0, instance:ui.TestEmployeeDetails@2e3fc542]" started-at="2024-06-25T11:54:11 WIB" name="testCalculateYearlySalary" finished-at="2024-06-25T11:54:11 WIB" duration-ms="10" status="FAIL">
+        <test-method signature="testCalculateYearlySalary()[pri:0, instance:ui.TestEmployeeDetails@706a04ae]" started-at="2024-07-24T15:05:27 WIB" name="testCalculateYearlySalary" finished-at="2024-07-24T15:05:27 WIB" duration-ms="12" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[8000 expected [96000.0] but found [96001.0]]]>
