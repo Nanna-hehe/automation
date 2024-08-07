@@ -75,5 +75,5 @@ jobs:
         xrayCloud: true
         testFormat: "junit"
         testPaths: "**/test-results/*.xml"
-        projectKey: "COM"
+        projectKey: "BRROOM"
         testExecutionKey: ${{ github.event.inputs.test_execution_key }}
